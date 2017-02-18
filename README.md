@@ -35,4 +35,28 @@ emulated_hue:
  ```
 The above configuration devices two emulated_hue instances ('hue1' and 'hue2'). The first emulated_hue is hosted on port 8301 and the second is on port 8302. 
 
-The `target_ip` option can be used if you have more than one Amazon Echo and you only want certain domains to be reported to a particular Echo. This is usually not required. 
+### `target_ip` - and multiple Echos
+
+The `target_ip` option can be used if you have more than one Amazon Echo and you only want certain domains to be reported to a particular Echo. 
+
+If you have multiple Echos in your network with a single Alexa account you might want to set `target_ip` to one of your Echo IP address for each emulated_hue. This will be the most efficient way to handle the Alexa discovery process.
+
+``` yaml
+emulated_hue:
+  hue1:
+    type: alexa
+    listen_port: 8301
+    target_ip: 192.168.1.111
+    exposed_domains:
+      - fan
+      - group
+      - climate
+      - script
+  hue2:
+    type: alexa
+    listen_port: 8302
+    target_ip: 192.168.1.111
+    exposed_domains:
+      - light
+ ```
+In this example one Echo (192.168.1.111) has been selected to handle device discovery.
