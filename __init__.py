@@ -158,7 +158,7 @@ class Config(object):
 
         # Get the port that the Hue bridge will listen on
         self.listen_port = conf.get(CONF_LISTEN_PORT)
-        _LOGGER.error("listen port - {}".format(self.listen_port))
+        _LOGGER.info("listen port - {}".format(self.listen_port))
         if not isinstance(self.listen_port, int):
             self.listen_port = DEFAULT_LISTEN_PORT
             _LOGGER.warning(
