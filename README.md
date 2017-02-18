@@ -22,7 +22,6 @@ emulated_hue:
   hue1:
     type: alexa
     listen_port: 8301
-    target_ip: 192.168.1.110
     exposed_domains:
       - fan
       - group
@@ -30,7 +29,6 @@ emulated_hue:
       - script
   hue2:
     type: alexa
-    target_ip: 192.168.1.110
     listen_port: 8302
     exposed_domains:
       - light
