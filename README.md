@@ -67,7 +67,7 @@ Entities can be customized to turn repoting through emulated_hue. This is simple
 
 This attribute has been extended to support True, False, or the name of the emulated hue instance (e.g. hue1, hue2, etc.)
 
-```
+``` yaml
 # Example customization
 homeassistant:
   customize:
