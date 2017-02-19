@@ -71,6 +71,7 @@ CONFIG_SCHEMA = vol.Schema({
 }, extra=vol.ALLOW_EXTRA)
 
 ATTR_EMULATED_HUE = 'emulated_hue'
+ATTR_EMULATED_HUE_INSTANCE = 'emulated_hue_instance'
 
 
 def setup(hass, yaml_config):
@@ -241,15 +242,13 @@ class Config(object):
         explicit_expose = entity.attributes.get(ATTR_EMULATED_HUE, None)
 
         # 
-        # entity attribute emulated_hue instance - e.g. 'emulated_hue: hue1'
+        # entity attribute emulated_hue_instance - e.g. 'emulated_hue_instance: hue1'
         #
-        if explicit_expose is not None:
-            if explicit_expose.lower() not in ['true', 'false']:
-                if explicit_expose != self.hue_name:
-                    return False
-
-
-
+        hue_instance = entity.attributes.get(ATTR_EMULATED_HUE_INSTANCE, None)
+        if hue_instance is not None:
+            if hue_instance != self.hue_name:
+                return False
+                
         domain_exposed_by_default = \
             self.expose_by_default and domain in self.exposed_domains
 
