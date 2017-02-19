@@ -240,6 +240,14 @@ class Config(object):
         domain = entity.domain.lower()
         explicit_expose = entity.attributes.get(ATTR_EMULATED_HUE, None)
 
+        # 
+        # entity attribute emulated_hue instance - e.g. 'emulated_hue: hue1'
+        #
+        if explicit_expose is not None:
+            if explicit_expose != 'True':
+                if explicit_expose != self.hue_name:
+                    return False
+
         domain_exposed_by_default = \
             self.expose_by_default and domain in self.exposed_domains
 
