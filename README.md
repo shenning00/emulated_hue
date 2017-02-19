@@ -60,3 +60,22 @@ emulated_hue:
       - light
  ```
 In this example one Echo (192.168.1.111) has been selected to handle device discovery.
+
+### customize entity emulated_hue: `hue_name`
+
+Entities can be customized to turn repoting through emulated_hue. This is simple by setting emulated_hue to True. 
+
+This attribute has been extended to support True, False, or the name of the emulated hue instance (e.g. hue1, hue2, etc.)
+
+```
+# Example customization
+homeassistant:
+  customize:
+    light.bedroom_light:
+      emulated_hue: false
+    light.office_light:
+      emulated_hue: hue1
+    light.kitchen_light:
+      emulated_hue: hue2
+```
+
