@@ -61,7 +61,7 @@ emulated_hue:
  ```
 In this example one Echo (192.168.1.111) has been selected to handle device discovery.
 
-### customize entity emulated_hue_instance: `hue_name`
+### customize entity `emulated_hue_instance: hue_name`
 
 Entities can be customized to turn repoting through emulated_hue. 
 A new attribute has been added to support name of the emulated hue instance (e.g. hue1, hue2, etc.) to report this entity.
