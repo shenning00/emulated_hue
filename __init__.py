@@ -12,7 +12,7 @@ import voluptuous as vol
 
 from homeassistant import util
 from homeassistant.const import (
-    EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STOP, CONF_NAME
+    EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STOP
 )
 from homeassistant.components.http import REQUIREMENTS  # NOQA
 from homeassistant.components.http import HomeAssistantWSGI
@@ -53,7 +53,7 @@ DEFAULT_TYPE = TYPE_GOOGLE
 
 CONFIG_SCHEMA = vol.Schema({
     DOMAIN: cv.ordered_dict({
-        CONF_NAME: cv.string, 
+        cv.slug: cv.string, 
         vol.Optional(CONF_HOST_IP): cv.string,
         vol.Optional(CONF_LISTEN_PORT, default=DEFAULT_LISTEN_PORT):
             vol.All(vol.Coerce(int), vol.Range(min=1, max=65535)),
@@ -79,6 +79,7 @@ def setup(hass, yaml_config):
     hue_list = []
 
     for hue_name, conf in yaml_config.get(DOMAIN, {}).items():
+        _LOGGER.error("hue {}".format(hue_name))
         config = Config(hass,conf,hue_name)
 
         server = HomeAssistantWSGI(
