@@ -11,7 +11,7 @@ This is a version of the Home Assistant emulated_hue component that allows for m
 
 ### Installation
 
-Download the git repository and copy the files intoe the Home Assistant /config/custom_components directory.
+Download the git repository and copy the files intoe the Home Assistant /config/custom_components/emulated_hue directory.
 
 ### Configuring emulated_hue
 
