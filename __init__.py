@@ -79,7 +79,7 @@ def setup(hass, yaml_config):
     hue_list = []
 
     for hue_name, conf in yaml_config.get(DOMAIN, {}).items():
-        _LOGGER.error("hue {}".format(hue_name))
+        _LOGGER.info("emulated hue {}".format(hue_name))
         config = Config(hass, conf, hue_name)
 
         server = HomeAssistantWSGI(
