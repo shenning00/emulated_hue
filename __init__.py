@@ -52,21 +52,22 @@ DEFAULT_EXPOSED_DOMAINS = [
 DEFAULT_TYPE = TYPE_GOOGLE
 
 CONFIG_SCHEMA = vol.Schema({
-    DOMAIN: cv.ordered_dict({
-        cv.slug: cv.string,
-        vol.Optional(CONF_HOST_IP): cv.string,
-        vol.Optional(CONF_LISTEN_PORT, default=DEFAULT_LISTEN_PORT):
-            vol.All(vol.Coerce(int), vol.Range(min=1, max=65535)),
-        vol.Optional(CONF_ADVERTISE_IP): cv.string,
-        vol.Optional(CONF_ADVERTISE_PORT):
-            vol.All(vol.Coerce(int), vol.Range(min=1, max=65535)),
-        vol.Optional(CONF_UPNP_BIND_MULTICAST): cv.boolean,
-        vol.Optional(CONF_TARGET_IP): cv.string,
-        vol.Optional(CONF_OFF_MAPS_TO_ON_DOMAINS): cv.ensure_list,
-        vol.Optional(CONF_EXPOSE_BY_DEFAULT): cv.boolean,
-        vol.Optional(CONF_EXPOSED_DOMAINS): cv.ensure_list,
-        vol.Optional(CONF_TYPE, default=DEFAULT_TYPE):
-            vol.Any(TYPE_ALEXA, TYPE_GOOGLE)
+    DOMAIN: vol.Schema({ 
+        cv.slug: vol.All({
+            vol.Optional(CONF_HOST_IP): cv.string,
+            vol.Optional(CONF_LISTEN_PORT, default=DEFAULT_LISTEN_PORT):
+                vol.All(vol.Coerce(int), vol.Range(min=1, max=65535)),
+            vol.Optional(CONF_ADVERTISE_IP): cv.string,
+            vol.Optional(CONF_ADVERTISE_PORT):
+                vol.All(vol.Coerce(int), vol.Range(min=1, max=65535)),
+            vol.Optional(CONF_UPNP_BIND_MULTICAST): cv.boolean,
+            vol.Optional(CONF_TARGET_IP): cv.string,
+            vol.Optional(CONF_OFF_MAPS_TO_ON_DOMAINS): cv.ensure_list,
+            vol.Optional(CONF_EXPOSE_BY_DEFAULT): cv.boolean,
+            vol.Optional(CONF_EXPOSED_DOMAINS): cv.ensure_list,
+            vol.Optional(CONF_TYPE, default=DEFAULT_TYPE):
+                vol.Any(TYPE_ALEXA, TYPE_GOOGLE)
+        })
     })
 }, extra=vol.ALLOW_EXTRA)
 
@@ -74,14 +75,15 @@ ATTR_EMULATED_HUE = 'emulated_hue'
 ATTR_EMULATED_HUE_INSTANCE = 'emulated_hue_instance'
 
 
-def setup(hass, yaml_config):
+def setup(hass, config):
     """Activate the emulated_hue component."""
     hue_list = []
 
-    for hue_name, conf in yaml_config.get(DOMAIN, {}).items():
-        _LOGGER.info("emulated hue {}".format(hue_name))
-        config = Config(hass, conf, hue_name)
+    for hue_name, conf in config[DOMAIN].items():
 
+        _LOGGER.info("emulated hue {}".format(hue_name))
+
+        config = Config(hass, conf, hue_name)
         server = HomeAssistantWSGI(
             hass,
             development=False,
