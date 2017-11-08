@@ -3,7 +3,9 @@ Home Assistant emulated_hue that supports multiple instances.
 
 ### Note: 
 
-This component has not been thoroughly tested. I have a very limited test bed.
+This component was tested with HA version 0.57.2. 
+
+I have a very limited environment to test with so you are kinda on your own.
 
 ### What is this?
 

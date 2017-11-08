@@ -86,7 +86,6 @@ def setup(hass, config):
         config = Config(hass, conf, hue_name)
         server = HomeAssistantWSGI(
             hass,
-            development=False,
             server_host=config.host_ip_addr,
             server_port=config.listen_port,
             api_password=None,
